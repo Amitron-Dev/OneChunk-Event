@@ -1,0 +1,9 @@
+name: OnechunkCORE
+author: Amitron
+version: "0.0"
+api: Spigot
+api-version: "1.13"
+main: net.amitron.event.GMain
+commands:
+  event:
+    description: Main command
