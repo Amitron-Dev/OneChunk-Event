@@ -83,7 +83,7 @@ public class PlayerHandler implements Listener {
 		if(main.isState(GState.SURVIVAL)) {
 			Player p = e.getEntity();
 			main.getEliminated().add(p.getUniqueId());
-			p.kickPlayer("Vous êtes éliminé, merci de votre particiption !");
+			p.kickPlayer("§4§lVous êtes éliminé\n§r§6merci de votre particiption " + p.getName() + " !");
 		}
 	}
 	
@@ -91,7 +91,7 @@ public class PlayerHandler implements Listener {
 	public void onLogin(PlayerLoginEvent e) {
 		Player p = e.getPlayer();
 		if(main.getEliminated().contains(p.getUniqueId())) {
-			e.disallow(Result.KICK_OTHER, "Vous êtes éliminé, merci de votre particiption !");
+			e.disallow(Result.KICK_OTHER, "§4§lVous êtes éliminé\n§r§6merci de votre particiption " + p.getName() + " !");
 		}
 	}
 

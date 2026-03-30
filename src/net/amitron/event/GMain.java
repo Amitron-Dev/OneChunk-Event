@@ -20,6 +20,7 @@ public class GMain extends JavaPlugin{
 	private GState state;
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private ArrayList<UUID> eliminated = new ArrayList<UUID>();
+	public static String piege = "§aOnechunk";
 	
 	@Override
 	public void onEnable() {
@@ -32,6 +33,7 @@ public class GMain extends JavaPlugin{
 		//LISTERNERS
 		Bukkit.getServer().getPluginManager().registerEvents(new PlayerHandler(this), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new PlayerSecure(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new guiHandler(this), this);
 	}
 	
 	public void setState(GState state) {
