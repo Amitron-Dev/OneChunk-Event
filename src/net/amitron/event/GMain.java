@@ -14,6 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import net.amitron.event.commands.event;
 import net.amitron.event.listeners.PlayerHandler;
 import net.amitron.event.listeners.PlayerSecure;
+import net.amitron.event.listeners.guiHandler;
 
 public class GMain extends JavaPlugin{
 	
@@ -21,6 +22,8 @@ public class GMain extends JavaPlugin{
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private ArrayList<UUID> eliminated = new ArrayList<UUID>();
 	public static String piege = "§aOnechunk";
+	public static String prefix = "§6§l[EVENT] §r ";
+	public static boolean pvp = false;
 	
 	@Override
 	public void onEnable() {

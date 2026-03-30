@@ -14,6 +14,10 @@ import net.amitron.event.GMain;
 public class event implements CommandExecutor {
 	
 	private GMain main;
+	public static String stickname = "§aStick of knockback";
+	public static String closename = "§cFermer";
+	public static String pvponname = "§aPVP";
+	public static String pvpoffname = "§cPVP";
 	
 	public event(GMain main) {
 		this.main=main;
@@ -31,8 +35,21 @@ public class event implements CommandExecutor {
 				
 				Inventory gui = Bukkit.createInventory(null, 27, GMain.piege);
 				
-				ItemStack stick = GMain.createItem("§aStick of knockback", 1 , Material.STICK);
-				ItemStack close = GMain.createItem("§cFermer", 1, Material.BARRIER);
+				//    NAMES
+				
+				
+				ItemStack stick = GMain.createItem(stickname, 1 , Material.STICK);
+				
+				if(GMain.pvp) {
+					ItemStack pvpon = GMain.createItem(pvponname, 1, Material.DIAMOND_SWORD);
+					gui.addItem(pvpon);
+				}else {
+					ItemStack pvpoff = GMain.createItem(pvpoffname, 1, Material.WOODEN_SWORD);
+					gui.addItem(pvpoff);
+				}
+				
+				
+				ItemStack close = GMain.createItem(closename, 1, Material.BARRIER);
 				
 				gui.setItem(18, close);
 				gui.addItem(stick);

@@ -43,19 +43,31 @@ public class PlayerHandler implements Listener {
 				ItemStack launch = GMain.createItem(launch_name, 1, Material.EMERALD);
 				p.getInventory().clear();
 				p.getInventory().setItem(4, launch);
+				p.setGameMode(GameMode.CREATIVE);
+				return;
 			}else {
 				if(!p.hasPermission("admin.item")) {
 					main.getPlayers().add(p);
 				}
 			}
 			
-			
+				
 		}
 		
 		
 		if(main.isState(GState.SURVIVAL)) {
+			
+			if(p.hasPermission("admin.login")) {
+				p.setGameMode(GameMode.CREATIVE);
+				return;
+			}
+			if(main.getPlayers().contains(p)) {
+				p.sendMessage("§cRebonjour!");
+				return;
+			}
 			p.sendMessage("§cLe jeu a déjà démarré.");
 			p.setGameMode(GameMode.SPECTATOR);
+			p.getInventory().clear();
 		}
 	}
 	
@@ -83,7 +95,7 @@ public class PlayerHandler implements Listener {
 		if(main.isState(GState.SURVIVAL)) {
 			Player p = e.getEntity();
 			main.getEliminated().add(p.getUniqueId());
-			p.kickPlayer("§4§lVous êtes éliminé\n§r§6merci de votre particiption " + p.getName() + " !");
+			p.kickPlayer("§4§lVous êtes éliminé\n§r§6Merci de votre particiption " + p.getName() + " !");
 		}
 	}
 	
@@ -91,7 +103,8 @@ public class PlayerHandler implements Listener {
 	public void onLogin(PlayerLoginEvent e) {
 		Player p = e.getPlayer();
 		if(main.getEliminated().contains(p.getUniqueId())) {
-			e.disallow(Result.KICK_OTHER, "§4§lVous êtes éliminé\n§r§6merci de votre particiption " + p.getName() + " !");
+			if(p.hasPermission("admin.login")) return;
+			e.disallow(Result.KICK_OTHER, "§4§lVous êtes éliminé\n§r§6Merci de votre particiption " + p.getName() + " !");
 		}
 	}
 

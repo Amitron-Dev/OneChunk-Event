@@ -22,7 +22,7 @@ public class GAutoStart extends BukkitRunnable {
 		
 		if(timer!= 0) {
 			for(Player p : Bukkit.getOnlinePlayers()) {
-				p.sendMessage("§aL'event démarre dans " + timer + " secondes");
+				p.sendMessage(GMain.prefix + "§aL'event démarre dans " + timer + " secondes");
 			}
 		}
 		

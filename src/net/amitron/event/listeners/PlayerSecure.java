@@ -45,6 +45,11 @@ public class PlayerSecure implements Listener {
 		if(!main.isState(GState.SURVIVAL)) {
 			d.sendMessage("§2Vous ne pouvez pas faire cela maintenant");
 			e.setCancelled(true);
+		}else if(main.isState(GState.SURVIVAL)) {
+			if(!GMain.pvp) {
+				d.sendMessage("§2Vous ne pouvez pas faire cela maintenant");
+				e.setCancelled(true);
+			}
 		}
 	}
 	
