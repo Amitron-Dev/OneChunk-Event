@@ -1,5 +1,7 @@
 package net.amitron.event.listeners;
 
+import java.util.Arrays;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -47,6 +49,7 @@ public class guiHandler implements Listener {
 				
 				stickm.setDisplayName("§4§lSTICK");
 				stickm.addEnchant(Enchantment.KNOCKBACK, 255, true);
+				stickm.setLore(Arrays.asList("§r§l UNE SEUL UTILISATION"));
 				
 				stick.setItemMeta(stickm);
 				

@@ -14,11 +14,13 @@ import org.bukkit.inventory.ItemStack;
 
 import net.amitron.event.GMain;
 import net.amitron.event.GState;
+import net.amitron.event.manager.FilesManager;
 import net.amitron.event.runnables.GAutoStart;
 
 public class PlayerHandler implements Listener {
 	
 	private GMain main;
+	FilesManager files = new FilesManager(main);
 	
 	public PlayerHandler(GMain main) {
 		this.main = main;
@@ -47,6 +49,8 @@ public class PlayerHandler implements Listener {
 				return;
 			}else {
 				if(!p.hasPermission("admin.item")) {
+					if(files.contains("locations", "lobby"))
+					p.teleport(files.getLocation("location", "lobby"));
 					main.getPlayers().add(p);
 				}
 			}

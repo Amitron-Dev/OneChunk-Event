@@ -15,6 +15,7 @@ import net.amitron.event.commands.event;
 import net.amitron.event.listeners.PlayerHandler;
 import net.amitron.event.listeners.PlayerSecure;
 import net.amitron.event.listeners.guiHandler;
+import net.amitron.event.manager.FilesManager;
 
 public class GMain extends JavaPlugin{
 	
@@ -23,12 +24,17 @@ public class GMain extends JavaPlugin{
 	private ArrayList<UUID> eliminated = new ArrayList<UUID>();
 	public static String piege = "§aOnechunk";
 	public static String prefix = "§6§l[EVENT] §r ";
+	public static String location_files_name = "locations";
 	public static boolean pvp = false;
+	
+	FilesManager files = new FilesManager(this);
 	
 	@Override
 	public void onEnable() {
 		
 		setState(GState.WAITING);
+		
+		files.create(location_files_name);
 		
 		//COMMANDS
 		getCommand("event").setExecutor(new event(this));

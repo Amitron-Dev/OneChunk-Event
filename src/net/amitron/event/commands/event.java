@@ -10,6 +10,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import net.amitron.event.GMain;
+import net.amitron.event.manager.FilesManager;
 
 public class event implements CommandExecutor {
 	
@@ -18,6 +19,8 @@ public class event implements CommandExecutor {
 	public static String closename = "§cFermer";
 	public static String pvponname = "§aPVP";
 	public static String pvpoffname = "§cPVP";
+	
+	FilesManager files = new FilesManager(main);
 	
 	public event(GMain main) {
 		this.main=main;
@@ -58,7 +61,31 @@ public class event implements CommandExecutor {
 				p.openInventory(gui);
 				
 			}
+			
+			if(args[0].equalsIgnoreCase("setlobby")) {
+				if(p.hasPermission("admin.commands")) {
+					p.sendMessage("§aPosition §rlobby §amodifiée");
+					
+					files.setLocation(GMain.location_files_name, "lobby", p.getLocation());
+					files.save("locations");
+				}else {
+					p.sendMessage("§cVous n'avez pas la permission");
+				}
+			}
+			
+			if(args[0].equalsIgnoreCase("setspawn")) {
+				if(p.hasPermission("admin.commands")) {
+					p.sendMessage("§aPosition §rspawn §amodifiée");
+					
+					files.setLocation(GMain.location_files_name, "spawn", p.getLocation());
+					files.save("locations");
+					
+				}else {
+					p.sendMessage("§cVous n'avez pas la permission");
+				}
+			}
 		}
+		
 		
 		
 		return false;

@@ -7,6 +7,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import net.amitron.event.GMain;
 import net.amitron.event.GState;
+import net.amitron.event.manager.FilesManager;
 
 public class GAutoStart extends BukkitRunnable {
 	
@@ -16,6 +17,8 @@ public class GAutoStart extends BukkitRunnable {
 	public GAutoStart(GMain main) {
 		this.main = main;
 	}
+	
+	FilesManager files = new FilesManager(main);
 	
 	@Override
 	public void run() {
@@ -28,9 +31,15 @@ public class GAutoStart extends BukkitRunnable {
 		
 		if(timer == 0) {
 			main.setState(GState.SURVIVAL);
+			
+			Bukkit.broadcastMessage(GMain.prefix + "§aLa partie commence !");
 			for(Player p : main.getPlayers()) {
 				p.sendMessage("§aBon courage !");
 				p.getInventory().addItem(GMain.createItem("§dLe steak de la force", 10, Material.COOKED_BEEF));
+				if(files.contains("locations", "spawn")) {
+					p.teleport(files.getLocation("locations", "spawn"));
+				}
+				
 			}
 			cancel();
 		}
