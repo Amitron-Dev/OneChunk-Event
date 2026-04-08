@@ -27,14 +27,14 @@ public class GMain extends JavaPlugin{
 	public static String location_files_name = "locations";
 	public static boolean pvp = false;
 	
-	FilesManager files = new FilesManager(this);
+	private FilesManager filesManager;
 	
 	@Override
 	public void onEnable() {
-		
+
+		this.filesManager = new FilesManager(this);
+        this.filesManager.create(location_files_name);
 		setState(GState.WAITING);
-		
-		files.create(location_files_name);
 		
 		//COMMANDS
 		getCommand("event").setExecutor(new event(this));
@@ -72,5 +72,9 @@ public class GMain extends JavaPlugin{
 	public List<UUID> getEliminated(){
 		return eliminated;
 	}
+	
+	public FilesManager getFilesManager() {
+        return filesManager;
+    }
 
 }

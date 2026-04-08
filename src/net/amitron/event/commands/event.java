@@ -19,13 +19,15 @@ public class event implements CommandExecutor {
 	public static String closename = "§cFermer";
 	public static String pvponname = "§aPVP";
 	public static String pvpoffname = "§cPVP";
-	
-	FilesManager files = new FilesManager(main);
+	private FilesManager files;
+
 	
 	public event(GMain main) {
 		this.main=main;
+		this.files = main.getFilesManager();
 	}
 
+	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
@@ -67,7 +69,7 @@ public class event implements CommandExecutor {
 					p.sendMessage("§aPosition §rlobby §amodifiée");
 					
 					files.setLocation(GMain.location_files_name, "lobby", p.getLocation());
-					files.save("locations");
+					files.save(GMain.location_files_name);
 				}else {
 					p.sendMessage("§cVous n'avez pas la permission");
 				}

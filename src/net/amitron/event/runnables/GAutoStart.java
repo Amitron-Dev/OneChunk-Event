@@ -13,12 +13,14 @@ public class GAutoStart extends BukkitRunnable {
 	
 	private int timer = 20;
 	private GMain main;
+	FilesManager files;
 	
 	public GAutoStart(GMain main) {
 		this.main = main;
+		this.files = main.getFilesManager();
 	}
 	
-	FilesManager files = new FilesManager(main);
+	
 	
 	@Override
 	public void run() {

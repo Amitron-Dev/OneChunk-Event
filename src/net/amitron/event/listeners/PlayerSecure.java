@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 import net.amitron.event.GMain;
@@ -46,7 +47,7 @@ public class PlayerSecure implements Listener {
 	}
 	
 	@EventHandler
-	public void onDamage(EntityDamageEvent e) {
+	public void onDamage(EntityDamageByEntityEvent e) {
 		
 		Entity p = e.getEntity();
 		if(!(p instanceof Player)) return;

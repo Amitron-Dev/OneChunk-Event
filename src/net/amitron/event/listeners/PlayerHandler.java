@@ -20,11 +20,13 @@ import net.amitron.event.runnables.GAutoStart;
 public class PlayerHandler implements Listener {
 	
 	private GMain main;
-	FilesManager files = new FilesManager(main);
+	private FilesManager files;
 	
 	public PlayerHandler(GMain main) {
 		this.main = main;
+		this.files = main.getFilesManager();
 	}
+	
 	
 	String launch_name = "§a§lLANCEMENT";
 	
@@ -50,7 +52,7 @@ public class PlayerHandler implements Listener {
 			}else {
 				if(!p.hasPermission("admin.item")) {
 					if(files.contains("locations", "lobby"))
-					p.teleport(files.getLocation("location", "lobby"));
+					p.teleport(files.getLocation("locations", "lobby"));
 					main.getPlayers().add(p);
 				}
 			}
